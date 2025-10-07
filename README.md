@@ -42,8 +42,8 @@ Create a lightweight ROI calculator that helps users visualize cost savings and 
 Even smaller volumes should still produce a positive ROI due to the bias factor.
 
 **Tech Stack :**
-      **Frontend** : Next js and Tailwind CSS 
-      **Backend** : MongoDB(Nosql) and Express js
-      **Deployment** : Deployment using Netlify and Render 
+     - **Frontend** : Next js and Tailwind CSS 
+      -**Backend** : MongoDB(Nosql) and Express js
+      -**Deployment** : Deployment using Netlify and Render 
 
 **Goal** : Creating a singepage site with a Form for getting inputs from the users , after getting the input process the functions and calculations to compute the results.Gated report (PDF or HTML snapshot) requiring email before download.
