@@ -1,49 +1,84 @@
-# Invoicing ROI Simulator
+# ROI Simulator — Invoicing Automation
 
----
+Lightweight ROI calculator with a Next.js frontend and an Express backend (MongoDB persistence optional).
 
-##  Purpose
+## Getting Started
 
-Create a lightweight ROI calculator that helps users visualize cost savings and payback when switching from manual to automated invoicing. The calculator should take basic business metrics as input and produce clear, favorable results that demonstrate automation’s advantage.
+First, run the development server:
 
-##  Functionalities
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-### Must-Have Features
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. **Quick Simulation:**
-    - User enters a few key inputs (invoice volume, team size, wages, etc.).
-    - Results (monthly savings, payback, ROI) appear instantly.
-2. **Scenario Management:**
-    - Save and retrieve simulations by name.
-    - Store results in any local or cloud database.
-3. **Report Generation:**
-    - Downloadable PDF or HTML report.
-    - Requires email input before generation (lead capture).
-4. **Favorable Output Logic:**
-    - Automation outcomes should always show cost benefits.
-    - Built-in bias factor ensures positive ROI.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Example Calculation
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-*Input:*
+## Learn More
 
-- 2000 invoices/month
-- 3 AP staff
-- $30/hr
-- 10 mins/invoice
-- $100 error cost
+To learn more about Next.js, take a look at the following resources:
 
-*Output:*
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Monthly savings: **$8,000**
-- Payback: **6.3 months**
-- ROI (36 months): **>400%**
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Even smaller volumes should still produce a positive ROI due to the bias factor.
+## Deploy on Vercel
 
-**Tech Stack :**
-     - **Frontend** : Next js and Tailwind CSS 
-      -**Backend** : MongoDB(Nosql) and Express js
-      -**Deployment** : Deployment using Netlify and Render 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-**Goal** : Creating a singepage site with a Form for getting inputs from the users , after getting the input process the functions and calculations to compute the results.Gated report (PDF or HTML snapshot) requiring email before download.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Local dev (frontend + backend)
+
+1. Copy `.env.example` to `.env` and set `MONGO_URI` (optional) and `MONGO_DB` if you want saved scenarios to persist.
+2. Install dependencies:
+
+   ```powershell
+   npm install
+   ```
+
+3. Start both servers in development (frontend runs on port 3000, backend on 4000):
+
+   ```powershell
+   npm run dev:all
+   ```
+
+## Notes on integration
+
+- The frontend calls `/api/*` endpoints. During development `next.config.ts` rewrites `/api/*` to `http://localhost:4000/api/*` so the frontend can talk to the Express server without CORS issues.
+- In production, set `NEXT_PUBLIC_API_BASE` to the full API URL (e.g., `https://my-api.example.com/api`) if the API is hosted separately.
+- If `MONGO_URI` is not set, simulation still works, but saving/loading scenarios will return an error (DB not configured).
+
+## API endpoints
+
+- POST /api/simulate — run simulation (body: the inputs JSON)
+- POST /api/scenarios — save scenario
+- GET /api/scenarios — list all
+- GET /api/scenarios/:id — retrieve scenario
+- DELETE /api/scenarios/:id — delete scenario
+- POST /api/report/generate — generate HTML report (requires { email, input })
+
+## Deployment
+
+- The Express API needs to be hosted on a reachable URL (Render, Railway, Heroku, etc.).
+- Host the Next.js frontend on Netlify (or Vercel). If the API is hosted separately, set `NEXT_PUBLIC_API_BASE` in your frontend environment variables to the API base (e.g., `https://api.example.com/api`).
+
+## Security and privacy
+
+- The backend report generation simply returns HTML in this prototype. If you collect emails or send reports, do so with a proper privacy policy and secure storage.
+
+If you want, I can:
+
+- Add server-side PDF export and return a downloadable file instead of HTML.
+- Prepare a Render or Railway deployment for the Express API and wire the frontend on Netlify with the correct env var.
+
+Happy to continue with deployment or adding PDF export — tell me which next step you prefer.

@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* theme variables removed (not supported) */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20,20,20,0.06);
+}
+
+.muted { color: #6b7280 }
+.accent { color: #0f62fe }
+.btn { padding: 8px 12px; border-radius: 8px; cursor: pointer }
+.btn-primary { background: #0f62fe; color: white; border: none }
+.btn-ghost { background: transparent; border: 1px solid #e5e7eb }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 420px; gap: 24px }
+
+.stat { display:flex; align-items:center; justify-content:space-between; padding:12px; border-radius:8px; background:#fff; border:1px solid #f1f5f9 }
+.stat .label { color:#6b7280 }
+.stat .value { font-weight:700 }
+
+.header { display:flex; align-items:center; justify-content:space-between; gap:12px }
+.brand { font-weight:700; font-size:18px }
+.subtle { color:#6b7280; font-size:13px }
+
+.stepper { display:flex; gap:10px; align-items:center }
+.step { padding:6px 10px; border-radius:999px; background:#eef2ff; color:#0f172a; font-weight:600 }
+
+.status-banner { padding:10px 14px; border-radius:8px; background:#f8fafc; border:1px solid #e6eef8; display:flex; justify-content:space-between; align-items:center; margin-bottom:12px }
+.status-banner .msg { font-size:13px }
+.status-banner .close { cursor:pointer; color:#6b7280 }
+
+.input-error { border-color:#fca5a5 !important; box-shadow:0 0 0 3px rgba(253,224,224,0.4); }
+.error-text { color:#b91c1c; font-size:12px }
+
+.savings-bar { height:14px; background:#f1f5f9; border-radius:999px; overflow:hidden }
+.savings-bar > i { display:block; height:100%; background:linear-gradient(90deg,#34d399,#0f62fe); }
+
+.spinner { border:4px solid rgba(0,0,0,0.06); border-top:4px solid #0f62fe; border-radius:50%; width:20px; height:20px; animation:spin 1s linear infinite }
+@keyframes spin { to { transform:rotate(360deg) } }
+
+.help-box { background:#fff; border:1px solid #eef2ff; padding:12px; border-radius:8px; font-size:13px }
+
+.analytics { display:flex; flex-direction:column; gap:12px }
+.analytics .cards { display:flex; gap:10px }
+.analytics .card-small { flex:1; padding:10px; border-radius:8px; background:#fff; border:1px solid #eef2ff }
+.compare-table { width:100%; border-collapse:collapse }
+.compare-table th, .compare-table td { padding:8px; border:1px solid #f1f5f9; text-align:left }
+
